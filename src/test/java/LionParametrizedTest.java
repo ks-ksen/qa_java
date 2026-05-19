@@ -39,15 +39,15 @@ public class LionParametrizedTest {
         if (shouldThrow) {
             // Если ожидается исключение, проверяем, что оно выбрасывается
             try {
-                new Lion(sex);
+                new Lion(sex, mockFeline);
                 fail("Должно было быть выброшено исключение для пола: " + sex);
             } catch (Exception e) {
                 // Проверяем сообщение исключения
-                assertEquals("Используйте допустимые значения пола животного - самей или самка", e.getMessage());
+                assertEquals("Используйте допустимые значения пола животного - самец или самка", e.getMessage());
             }
         } else {
             // Если исключения не ожидается, создаем льва и проверяем гриву
-            Lion lion = new Lion(sex);
+            Lion lion = new Lion(sex, mockFeline);
             assertEquals("Проверка наличия гривы для пола: " + sex, expectedMane, lion.doesHaveMane());
         }
     }

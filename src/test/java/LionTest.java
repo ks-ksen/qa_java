@@ -20,7 +20,7 @@ public class LionTest {
 
     @Before
     public void setUp() throws Exception {
-        lion = new Lion("Самец");
+        lion = new Lion("Самец", mockFeline);
 
         Field felineField = Lion.class.getDeclaredField("feline");
 
@@ -53,13 +53,16 @@ public class LionTest {
         verify(mockFeline, times(1)).getFood("Хищник");
     }
 
+
     @Test
-    public void testDoesHaveManeIsIndependentOfFeline() throws Exception {
-        Lion maleLion = new Lion("Самец");
-
-        Lion femaleLion = new Lion("Самка");
-
+    public void testMaleLionHasMane() throws Exception {
+        Lion maleLion = new Lion("Самец", mockFeline);
         assertTrue("Самец должен иметь гриву", maleLion.doesHaveMane());
+    }
+
+    @Test
+    public void testFemaleLionDoesNotHaveMane() throws Exception {
+        Lion femaleLion = new Lion("Самка", mockFeline);
         assertFalse("Самка не должна иметь гриву", femaleLion.doesHaveMane());
     }
 }
